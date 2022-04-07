@@ -38,6 +38,19 @@ dependencies:
   firebase_auth: ^3.3.12
   firebase_messaging: ^11.2.12
   loggy: ^2.0.1+1
+  get: ^4.6.1
+  get_storage: ^2.0.3
+  intl: ^0.17.0
+  flutter_svg: ^1.0.1
+  flutter_html: ^3.0.0-alpha.2
+  expandable: ^5.0.1
+  http: ^0.13.4
+  http_interceptor: ^1.0.1
+  google_sign_in: ^5.2.3
+  kakao_flutter_sdk: ^1.0.0
+  flutter_facebook_auth: ^4.1.2
+  sign_in_with_apple: ^3.3.0
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +74,16 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/images/
+  fonts:
+    - family: NanumGothic
+      fonts:
+        - asset: assets/fonts/NanumGothic-Regular.ttf
+        - asset: assets/fonts/NanumGothic-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NanumGothic-ExtraBold.ttf
+          weight: 900
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
