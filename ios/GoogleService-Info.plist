@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>280192320540-u36q80fa5pu29rn4sreh6dqs93bj6c0m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.280192320540-u36q80fa5pu29rn4sreh6dqs93bj6c0m</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>280192320540-vvkn9ahvu97viglkrpv9kr04jok59djs.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCqaHTLQF3Tym2brGI19w8HOkna7cB6PZM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>280192320540</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hj.smate</string>
+	<key>PROJECT_ID</key>
+	<string>shoppingmate-652c6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shoppingmate-652c6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:280192320540:ios:2e3e5ba60aeaa66d008bd9</string>
+</dict>
+</plist>

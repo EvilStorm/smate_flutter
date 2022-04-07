@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "280192320540",
+    "project_id": "shoppingmate-652c6",
+    "storage_bucket": "shoppingmate-652c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280192320540:android:fed76221f74ccbe3008bd9",
+        "android_client_info": {
+          "package_name": "com.hj.smate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280192320540-vvkn9ahvu97viglkrpv9kr04jok59djs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hj.smate",
+            "certificate_hash": "e60554119caf7e8501afb181c0ff54754cb86e74"
+          }
+        },
+        {
+          "client_id": "280192320540-393n52i4k1vai0iksta9ktbp32ebvc6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfcIHfsXiJOIInJ-E5gZiNEfaWgNfbYP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280192320540-393n52i4k1vai0iksta9ktbp32ebvc6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
