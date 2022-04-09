@@ -8,6 +8,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:loggy/loggy.dart';
+import 'package:smate/contants/key_store.dart';
+import 'package:smate/screens/common/dialog_basic.dart';
 
 import '../models/model_user.dart';
 import '../network/http_client.dart';
@@ -51,6 +54,8 @@ class SignController extends GetxController {
   }
 
   void signInContollerStart(final bool isSilent) {
+    logDebug("2222222222");
+
     isSilentSignIn = isSilent;
     if (isSilent) {
       signInMyApp(isSilent: true);
@@ -72,9 +77,9 @@ class SignController extends GetxController {
         UserInfoController userInfo = Get.find<UserInfoController>();
         userInfo.setUserInfo(user, isSilent);
 
-        storage.write(KeyStore.userID_I, user.id);
+        storage.write(KeyStore.userID_I, user.sId);
         HttpClient.instance.addHeader('identifyid', user.identifyId);
-        HttpClient.instance.addHeader('userid', user.id.toString());
+        HttpClient.instance.addHeader('userid', user.sId.toString());
       } else {
         if (isSilent) {
           return;
@@ -83,7 +88,7 @@ class SignController extends GetxController {
         signOut();
       }
     } catch (e) {
-      Log.e(e);
+      logError(e);
       if (isSilent) {
         return;
       }
@@ -141,7 +146,7 @@ class SignController extends GetxController {
       }
 
       if (remindTime % 5 == 0) {
-        Log.i('FireBase reload');
+        logInfo('FireBase reload');
         FirebaseAuth.instance.currentUser?.reload();
       }
       remindTime.value--;

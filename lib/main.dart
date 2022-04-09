@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
             child: child!);
       },
-      title: '스파링 클럽',
+      title: 'StyleMate',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: Routers().allPageRouter,

@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:smate/screens/home/screen_home.dart';
+import 'package:smate/screens/join/screen_join_process.dart';
 import 'package:smate/screens/sign/email_validation.dart';
 import 'package:smate/screens/sign/screen_sign_in.dart';
 import 'package:smate/screens/splash/screen_splash.dart';
@@ -13,6 +14,7 @@ class Routers {
     ),
     GetPage(
         name: '/emailValidation', page: () => const EmailValidationScreen()),
+    GetPage(name: '/joinProcess', page: () => const JoinProcessScreen()),
     GetPage(name: '/home', page: () => const HomeScreen()),
   ];
 }
