@@ -27,15 +27,12 @@ class SignController extends GetxController {
   Timer? _timer;
 
   final storage = GetStorage();
-  var isSilentSignIn = true;
 
-  void silentSignIn() {
-    setListen();
-  }
-
-  void setListen() {
+  void signInContollerStart() {
     FirebaseAuth.instance.userChanges().listen((user) async {
-      if (user == null && !isSilentSignIn) {
+      logDebug("userChanges : $user");
+
+      if (user == null) {
         _stopAuthReloadDemon();
         Get.offAllNamed('/signIn');
         return;
@@ -48,50 +45,33 @@ class SignController extends GetxController {
       //   Get.offAllNamed('/emailValidation');
       // } else {
       _stopAuthReloadDemon();
-      signInMyApp(isSilent: isSilentSignIn);
+      signInMyApp();
       // }
     });
   }
 
-  void signInContollerStart(final bool isSilent) {
-    logDebug("2222222222");
-
-    isSilentSignIn = isSilent;
-    if (isSilent) {
-      signInMyApp(isSilent: true);
-    } else {
-      Get.offAllNamed('/signIn');
-    }
-  }
-
-  void signInMyApp({bool isSilent = false}) async {
+  void signInMyApp() async {
     try {
-      final signIn = await HttpClient.instance.post('/sign', body: {
+      final signIn = await HttpClient.instance.post('/sign/signin', body: {
         'identifyId': FirebaseAuth.instance.currentUser?.uid,
         'email': FirebaseAuth.instance.currentUser?.providerData[0].email,
-        'joinType': signInType().toString(),
+        'loginType': signInType().toString(),
       });
 
       if (signIn['code'] == 200) {
         var user = UserModel.fromJson(signIn['data']);
         UserInfoController userInfo = Get.find<UserInfoController>();
-        userInfo.setUserInfo(user, isSilent);
+        userInfo.setUserInfo(user, false);
 
         storage.write(KeyStore.userID_I, user.sId);
         HttpClient.instance.addHeader('identifyid', user.identifyId);
         HttpClient.instance.addHeader('userid', user.sId.toString());
       } else {
-        if (isSilent) {
-          return;
-        }
         Fluttertoast.showToast(msg: '로그인에 실패했습니다.');
         signOut();
       }
     } catch (e) {
       logError(e);
-      if (isSilent) {
-        return;
-      }
       Get.dialog(
         BasicDialog(
           message: '앱 이용이 불가능합니다.\n잠시 후 다시 시도해주세요.',

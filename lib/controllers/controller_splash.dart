@@ -19,9 +19,9 @@ class SplashController extends GetxController
 
   SplashController() {
     getAppInitData();
-    _storage.write(KeyStore.notifySeq_I, 0);
-    _storage.write(KeyStore.termSeq_I, 0);
-    _storage.write(KeyStore.appVer_I, 0);
+    // _storage.write(KeyStore.notifySeq_I, 0);
+    // _storage.write(KeyStore.termSeq_I, 0);
+    // _storage.write(KeyStore.appVer_I, 0);
   }
 
   late AppStartModel _model;
@@ -121,10 +121,8 @@ class SplashController extends GetxController
     if (_model.processState.contains(false)) {
       _dataChange();
     } else {
-      // 로그인은 필요할 떄 호출로 변경
       final SignController _controller = Get.find();
-      _controller.signInContollerStart(false);
-      // Get.offAndToNamed('/home');
+      _controller.signInContollerStart();
     }
   }
 }

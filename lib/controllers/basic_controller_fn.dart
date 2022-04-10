@@ -24,4 +24,8 @@ class BasicControllorFunctions {
   void showRetryMessage() {
     Fluttertoast.showToast(msg: "네트워크에 일시적인 문제가 발생했습니다.\n잠시 후 다시 시도 해주세요.");
   }
+
+  void showMessage(String msg) {
+    Fluttertoast.showToast(msg: msg);
+  }
 }

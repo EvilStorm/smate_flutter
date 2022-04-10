@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loggy/loggy.dart';
+import 'package:smate/controllers/contoller_user_info.dart';
 import 'package:smate/controllers/controller_email_sign_in.dart';
 import 'package:smate/controllers/controller_sign.dart';
 import 'package:smate/controllers/controller_third_party_signin.dart';
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SignController());
+    Get.put(UserInfoController());
     Get.put(ThirdPartySignInController());
     Get.put(EmailSignInController());
 
