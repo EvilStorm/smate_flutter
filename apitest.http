@@ -1,0 +1,8 @@
+###
+GET http://3.36.123.30:2394/api/init/splash/0/0/0
+
+###
+GET http://3.36.123.30:2394/api/user/check/nickName/haha
+content-type: application/json
+identifyId: zxkcjhiqwuezxd
+userId: 62511605a0503d749f3c647f
