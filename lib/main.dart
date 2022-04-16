@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loggy/loggy.dart';
@@ -68,7 +69,8 @@ Future<void> setFCM() async {
 
     if (message.notification != null) {
       logDebug(
-          'Message also contained a notification: ${message.notification}');
+          'Message also contained a notification: ${message.notification!.body!}');
+      Fluttertoast.showToast(msg: message.notification!.body ?? "");
     }
   });
 }

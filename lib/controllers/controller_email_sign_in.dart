@@ -4,10 +4,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 import 'package:smate/contants/constants.dart';
+import 'package:smate/controllers/basic_controller_fn.dart';
 
 import 'controller_sign.dart';
 
-class EmailSignInController extends GetxController {
+class EmailSignInController extends GetxController
+    with BasicControllorFunctions {
   final SignController _signController = Get.find<SignController>();
   final _emailValid = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -45,15 +47,18 @@ class EmailSignInController extends GetxController {
   bool isPasswodVaildate() => passwordController.text.length >= 8;
   bool checkInputVaildation() {
     if (emailController.text == "") {
+      showMessage('이메일을 입력해주세요');
       return false;
     }
 
     if (passwordController.text == "" || !isPasswodVaildate()) {
+      showMessage('비밀번호를 입력해주세요');
       return false;
     }
 
     if (passwordCheckController.text == "" ||
         passwordController.text != passwordCheckController.text) {
+      showMessage('비밀번호와 다릅니다.');
       return false;
     }
 
