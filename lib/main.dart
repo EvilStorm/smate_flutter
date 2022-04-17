@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:smate/controllers/controller_email_sign_in.dart';
 import 'package:smate/controllers/controller_sign.dart';
 import 'package:smate/controllers/controller_third_party_signin.dart';
 import 'package:smate/firebase_options.dart';
+import 'package:smate/models/model_sample.dart';
 import 'package:smate/routers.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -32,6 +34,8 @@ Future<void> main() async {
   );
   await setFCM();
   await GetStorage.init();
+  final FirebaseApp _initialization = await Firebase.initializeApp();
+  FirebaseFirestore.instanceFor(app: _initialization);
 
   runApp(const MyApp());
 }

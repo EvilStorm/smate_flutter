@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Style Mate</string>
+    <string name="facebook_app_id">677081420224382</string>
+    <string name="fb_login_protocol_scheme">fb677081420224382</string>
+    <string name="facebook_client_token">8ba4242ec0d98db82f4c4b1d085ea924</string>
+
+
+</resources>
