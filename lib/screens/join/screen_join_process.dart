@@ -28,16 +28,12 @@ class _JoinProcessScreenState extends State<JoinProcessScreen> {
   @override
   void initState() {
     _joinController.calcStartIndex();
-    _controller.signOut();
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     _joinController.calcStartIndex();
-    logDebug('4555555555 ${_joinController.pageIndex}');
-
     return Scaffold(
       body: SafeArea(
         child: Obx(
