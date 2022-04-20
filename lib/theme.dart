@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Themes {
   static final lightTheme = ThemeData.light().copyWith(
       backgroundColor: const Color(0xFFFFFFFF),
-      dialogBackgroundColor: const Color(0xFF777777),
+      dialogBackgroundColor: const Color(0xFF383838),
       primaryColor: const Color(0xFFF56E22),
       hintColor: Colors.grey[400],
       disabledColor: Colors.grey[700],
