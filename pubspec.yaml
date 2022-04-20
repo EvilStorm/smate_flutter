@@ -77,13 +77,15 @@ flutter:
   assets:
     - assets/images/
   fonts:
-    - family: NanumGothic
+    - family: SUIT
       fonts:
-        - asset: assets/fonts/NanumGothic-Regular.ttf
-        - asset: assets/fonts/NanumGothic-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/NanumGothic-ExtraBold.ttf
-          weight: 900
+        - asset: assets/fonts/SUIT-Medium.ttf
+        - asset: assets/fonts/SUIT-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/SUIT-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SUIT-Bold.ttf
+          weight: 600
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

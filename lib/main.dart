@@ -13,6 +13,7 @@ import 'package:smate/controllers/controller_sign.dart';
 import 'package:smate/controllers/controller_third_party_signin.dart';
 import 'package:smate/firebase_options.dart';
 import 'package:smate/routers.dart';
+import 'package:smate/theme.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -96,6 +97,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: Routers().allPageRouter,
+      theme: Themes.lightTheme,
     );
   }
 }
