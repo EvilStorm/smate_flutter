@@ -30,6 +30,6 @@ class Themes {
             fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.white),
         overline: TextStyle(fontSize: 14.0),
       ).apply(
-        bodyColor: Colors.white,
+        bodyColor: Colors.black,
       ));
 }

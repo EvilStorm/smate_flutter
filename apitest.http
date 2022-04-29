@@ -6,3 +6,10 @@ GET http://3.36.123.30:2394/api/user/check/nickName/haha
 content-type: application/json
 identifyId: zxkcjhiqwuezxd
 userId: 62511605a0503d749f3c647f
+
+
+###
+GET http://3.36.123.30:2394/api/user/detail/me
+content-type: application/json
+identifyId: uJyZ1KPQpsTFuTcAAOwOZDRYhfu1
+userId: 6256d1101014841df59a4975

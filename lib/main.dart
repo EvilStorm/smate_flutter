@@ -9,6 +9,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:loggy/loggy.dart';
 import 'package:smate/controllers/contoller_user_info.dart';
 import 'package:smate/controllers/controller_email_sign_in.dart';
+import 'package:smate/controllers/controller_join.dart';
+import 'package:smate/controllers/controller_mating.dart';
 import 'package:smate/controllers/controller_sign.dart';
 import 'package:smate/controllers/controller_third_party_signin.dart';
 import 'package:smate/firebase_options.dart';
@@ -86,6 +88,7 @@ class MyApp extends StatelessWidget {
     Get.put(UserInfoController());
     Get.put(ThirdPartySignInController());
     Get.put(EmailSignInController());
+    Get.lazyPut(() => MateingController());
 
     return GetMaterialApp(
       builder: (BuildContext context, Widget? child) {
