@@ -64,6 +64,13 @@ class UserDetailModel {
     stopReason = json['stopReason'];
     pushToken = json['pushToken'];
     hasAward = json['hasAward'];
+    if (json['mate'] != null) {
+      mate = <MateModel>[];
+      json['mate'].forEach((v) {
+        mate!.add(MateModel.fromJson(v));
+      });
+    }
+
     setting =
         json['setting'] != null ? SettingModel.fromJson(json['setting']) : null;
     createdAt = DateTime.parse(json['createdAt']);

@@ -1,9 +1,9 @@
 class BriefUserModel {
   String? sId;
-  Null? nickName;
-  Null? pictureMe;
+  String? nickName;
+  String? pictureMe;
 
-  BriefUserModel({this.sId, this.nickName, this.pictureMe});
+  BriefUserModel({sId, this.nickName, this.pictureMe});
 
   BriefUserModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -12,10 +12,10 @@ class BriefUserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['nickName'] = this.nickName;
-    data['pictureMe'] = this.pictureMe;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['nickName'] = nickName;
+    data['pictureMe'] = pictureMe;
     return data;
   }
 }

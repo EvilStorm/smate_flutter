@@ -1,9 +1,10 @@
+import 'package:smate/models/model_brief_user.dart';
 import 'package:smate/models/model_mate_join.dart';
 import 'package:smate/models/model_tag.dart';
 
 class MateModel {
   String? sId;
-  String? owner;
+  BriefUserModel? owner;
   List<String>? images;
   String? title;
   String? message;
@@ -11,7 +12,7 @@ class MateModel {
   String? locationStr;
   List<TagModel>? tags;
   bool? isShow;
-  String? mateDate;
+  DateTime? mateDate;
   DateTime? createdAt;
   MateJoinModel? member;
 
@@ -31,7 +32,7 @@ class MateModel {
 
   MateModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    owner = json['owner'];
+    owner = BriefUserModel.fromJson(json['owner']);
     images = json['images'].cast<String>();
     title = json['title'];
     message = json['message'];
@@ -44,7 +45,7 @@ class MateModel {
       });
     }
     isShow = json['isShow'];
-    mateDate = json['mateDate'];
+    mateDate = DateTime.parse(json['createdAt']);
     createdAt = DateTime.parse(json['createdAt']);
     member =
         json['member'] != null ? MateJoinModel.fromJson(json['member']) : null;
@@ -68,28 +69,6 @@ class MateModel {
     if (member != null) {
       data['member'] = member!.toJson();
     }
-    return data;
-  }
-}
-
-class Tags {
-  String? sId;
-  int? count;
-  String? tag;
-
-  Tags({this.sId, this.count, this.tag});
-
-  Tags.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    count = json['count'];
-    tag = json['tag'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['count'] = this.count;
-    data['tag'] = this.tag;
     return data;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:smate/controllers/controller_splash.dart';
 import 'package:smate/screens/common/widget_notify.dart';
 import 'package:smate/screens/common/widget_term.dart';
@@ -10,6 +11,7 @@ class SplashScreen extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     Get.put(SplashController());
+    initializeDateFormatting(Localizations.localeOf(context).languageCode);
 
     return Scaffold(
       body: SafeArea(

@@ -20,7 +20,7 @@ class Routers {
         name: '/joinProcess',
         page: () => const JoinProcessScreen(),
         binding: JoinProcessBinder()),
-    GetPage(name: '/home', page: () => MatingHomeScreen()),
+    GetPage(name: '/home', page: () => const HomeScreen()),
     GetPage(name: '/my/mating', page: () => MatingHomeScreen()),
   ];
 }

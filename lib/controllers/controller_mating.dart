@@ -9,6 +9,7 @@ class MateingController extends GetxController
     with BasicControllorFunctions, GetSingleTickerProviderStateMixin {
   var tabPage = 0.obs;
   late TabController tabbarController;
+  var userDetail = UserDetailModel().obs;
 
   @override
   void onInit() {
@@ -23,10 +24,10 @@ class MateingController extends GetxController
 
     var user = UserDetailModel.fromJson(response['data']);
 
+    userDetail.value = user;
+
     logInfo("user.aboutMe: ${user.aboutMe}");
     logInfo("user.mate.length: ${user.mate?.length}");
     logInfo("user.length: ${user.mateJoin?.length}");
-
-    logInfo(response);
   }
 }
