@@ -20,8 +20,7 @@ class CreateMating extends StatelessWidget {
       () => Stack(
         children: [
           Visibility(
-            visible:
-                (_mateingController.userDetail.value.mate?.isEmpty ?? true),
+            visible: (_mateingController.createdMate.isEmpty == true),
             child: EmptyView(
               title: '내가 만든 모임이 없어요 😳',
               message: '나와 같이 할 사람을 모을\n모임을 만들러 갈까요?',
@@ -30,19 +29,14 @@ class CreateMating extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible:
-                !(_mateingController.userDetail.value.mate?.isEmpty ?? true),
+            visible: (_mateingController.createdMate.isEmpty != true),
             child: ListView.builder(
-                itemCount:
-                    _mateingController.userDetail.value.mate?.length ?? 0,
+                itemCount: _mateingController.createdMate.length,
                 itemBuilder: (context, index) {
-                  logInfo(
-                      ' INEX : $index  SIze${_mateingController.userDetail.value.mate?.length} ');
                   return MatingCard(
                     key: UniqueKey(),
                     type: MatingCardType.mine,
-                    mateModel: _mateingController.userDetail.value.mate!
-                        .elementAt(index),
+                    mateModel: _mateingController.createdMate.elementAt(index),
                   );
                 }),
           ),

@@ -45,7 +45,7 @@ class MateModel {
       });
     }
     isShow = json['isShow'];
-    mateDate = DateTime.parse(json['createdAt']);
+    mateDate = DateTime.parse(json['mateDate']);
     createdAt = DateTime.parse(json['createdAt']);
     member =
         json['member'] != null ? MateJoinModel.fromJson(json['member']) : null;

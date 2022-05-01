@@ -5,36 +5,33 @@ import 'package:smate/controllers/controller_mating.dart';
 import 'package:smate/screens/mating/widgets/empty.dart';
 import 'package:smate/screens/mating/widgets/widget_mating_card.dart';
 
-class InterestingMate extends StatelessWidget {
-  InterestingMate({Key? key}) : super(key: key);
-
+class JoinMating extends StatelessWidget {
+  JoinMating({Key? key}) : super(key: key);
   final MateingController _mateingController = Get.find();
-
-  void createMate() {
-    logInfo(' Create Mate');
-  }
 
   @override
   Widget build(BuildContext context) {
+    logError('JoinMating  Build!!!!');
+
     return Obx(
       () => Stack(
         children: [
           Visibility(
-            visible: (_mateingController.likeMate.isEmpty == true),
+            visible: (_mateingController.joinMate.isEmpty == true),
             child: const EmptyView(
-              title: '관심이 모임이 😳',
-              message: '관심 있는 모임을\n스크랩 해둬요!',
+              title: '아직 참여한 모임이 없어요 😳',
+              message: '관심있는 모임에\n참여해보세요!',
             ),
           ),
           Visibility(
-            visible: (_mateingController.likeMate.isEmpty != true),
+            visible: (_mateingController.joinMate.isEmpty != true),
             child: ListView.builder(
-                itemCount: _mateingController.likeMate.length,
+                itemCount: _mateingController.joinMate.length,
                 itemBuilder: (context, index) {
                   return MatingCard(
                     key: UniqueKey(),
-                    type: MatingCardType.like,
-                    mateModel: _mateingController.likeMate.elementAt(index),
+                    type: MatingCardType.join,
+                    mateModel: _mateingController.joinMate.elementAt(index),
                   );
                 }),
           ),

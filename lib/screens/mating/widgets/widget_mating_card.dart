@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:loggy/loggy.dart';
 import 'package:smate/contants/color_store.dart';
 import 'package:smate/contants/constants.dart';
-import 'package:smate/models/model_brief_user.dart';
 import 'package:smate/models/model_mate_k.dart';
 import 'package:smate/screens/common/about_date.dart';
+import 'package:smate/screens/mating/widgets/mate_card_header_join.dart';
 import 'package:smate/screens/mating/widgets/mate_card_header_mine.dart';
 import 'package:smate/screens/mating/widgets/mate_join_member_in_card.dart';
-import 'package:smate/screens/mating/widgets/mate_state___.dart';
 
 enum MatingCardType { mine, join, like, none }
 
@@ -28,8 +27,12 @@ class MatingCard extends StatelessWidget {
         return MateCardHeaderMine(
           mateInfo: mateModel,
         );
+      case MatingCardType.join:
+        return MateCardHeaderJoin(
+          mateInfo: mateModel,
+        );
       default:
-        return MateState(
+        return MateCardHeaderJoin(
           mateInfo: mateModel,
         );
     }
@@ -37,6 +40,8 @@ class MatingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logError('MatingCardType  Build!!!! ${MatingCardType.join}');
+
     return Card(
       elevation: 2,
       child: SizedBox(
@@ -47,9 +52,13 @@ class MatingCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              mateImage(
-                3,
-                mateModel.images![0],
+              Flexible(
+                flex: 3,
+                fit: FlexFit.tight,
+                child: CachedNetworkImage(
+                  imageUrl: mateModel.images![0],
+                  fit: BoxFit.cover,
+                ),
               ),
               Flexible(
                 flex: 7,
@@ -93,16 +102,6 @@ class MatingCard extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Flexible mateImage(int flex, String image) {
-    return Flexible(
-      flex: flex,
-      child: CachedNetworkImage(
-        imageUrl: image,
-        fit: BoxFit.cover,
       ),
     );
   }

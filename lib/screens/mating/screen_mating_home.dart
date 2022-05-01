@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smate/contants/constants.dart';
 import 'package:smate/controllers/controller_mating.dart';
+import 'package:smate/controllers/controller_sign.dart';
 import 'package:smate/screens/mating/create_mating.dart';
 import 'package:smate/screens/mating/interesting_mating.dart';
-import 'package:smate/screens/mating/join_matring.dart';
+import 'package:smate/screens/mating/join_mating.dart';
 
 class MatingHomeScreen extends StatelessWidget {
   MatingHomeScreen({Key? key}) : super(key: key);
 
   final tabScreenWidgets = [
     CreateMating(),
-    const JoinMating(),
-    const InterestingMate(),
+    JoinMating(),
+    InterestingMate(),
   ];
 
   Widget tabWidge(BuildContext context, String title) {

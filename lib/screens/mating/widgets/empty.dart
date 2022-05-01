@@ -4,14 +4,14 @@ import 'package:smate/contants/constants.dart';
 class EmptyView extends StatelessWidget {
   final String title;
   final String message;
-  final String btnText;
-  final Function onClick;
+  final String? btnText;
+  final Function? onClick;
   const EmptyView({
     Key? key,
     required this.title,
     required this.message,
-    required this.onClick,
-    required this.btnText,
+    this.onClick,
+    this.btnText,
   }) : super(key: key);
 
   @override
@@ -41,20 +41,23 @@ class EmptyView extends StatelessWidget {
         const SizedBox(
           height: Constants.sapceGap * 4,
         ),
-        ElevatedButton(
-          onPressed: () {
-            onClick.call();
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: Constants.sapceGap * 4,
-                vertical: Constants.sapceGap),
-            child: Text(
-              btnText,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .apply(color: Colors.white),
+        Visibility(
+          visible: btnText != null,
+          child: ElevatedButton(
+            onPressed: () {
+              onClick?.call();
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.sapceGap * 4,
+                  vertical: Constants.sapceGap),
+              child: Text(
+                btnText ?? "",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .apply(color: Colors.white),
+              ),
             ),
           ),
         )

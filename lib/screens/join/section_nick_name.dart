@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smate/contants/constants.dart';
 import 'package:smate/controllers/controller_join.dart';
+import 'package:smate/controllers/controller_sign.dart';
 
 class JoinProcessSectionNickName extends StatefulWidget {
   const JoinProcessSectionNickName({Key? key}) : super(key: key);
@@ -26,6 +27,13 @@ class _JoinProcessSectionNickNameState
           Text('닉네임'),
           TextField(
             controller: _joinController.nickNameController,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              SignController controller = Get.find();
+              controller.signOut();
+            },
+            child: Text('로그아웃'),
           ),
           Spacer(),
           ElevatedButton(
