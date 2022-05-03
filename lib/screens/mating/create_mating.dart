@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
+import 'package:smate/contants/constants.dart';
 import 'package:smate/controllers/controller_mating.dart';
 import 'package:smate/screens/mating/widgets/widget_mating_card.dart';
 import 'package:smate/screens/mating/widgets/empty.dart';
@@ -30,15 +31,18 @@ class CreateMating extends StatelessWidget {
           ),
           Visibility(
             visible: (_mateingController.createdMate.isEmpty != true),
-            child: ListView.builder(
-                itemCount: _mateingController.createdMate.length,
-                itemBuilder: (context, index) {
-                  return MatingCard(
-                    key: UniqueKey(),
-                    type: MatingCardType.mine,
-                    mateModel: _mateingController.createdMate.elementAt(index),
-                  );
-                }),
+            child: ListView.separated(
+              itemCount: _mateingController.createdMate.length,
+              itemBuilder: (context, index) {
+                return MatingCard(
+                  key: UniqueKey(),
+                  type: MatingCardType.mine,
+                  mateModel: _mateingController.createdMate.elementAt(index),
+                );
+              },
+              separatorBuilder: (context, index) =>
+                  const SizedBox(height: Constants.sapceGap * 4),
+            ),
           ),
         ],
       ),
