@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loggy/loggy.dart';
+import 'package:smate/controllers/constroller_posting.dart';
 import 'package:smate/controllers/contoller_user_info.dart';
 import 'package:smate/controllers/controller_email_sign_in.dart';
 import 'package:smate/controllers/controller_home_b.dart';
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
     Get.lazyPut(() => MateingController());
     Get.lazyPut(() => HomeControllerB());
     Get.lazyPut(() => MainControllerB());
+    Get.lazyPut(() => PostingController());
 
     return GetMaterialApp(
       builder: (BuildContext context, Widget? child) {

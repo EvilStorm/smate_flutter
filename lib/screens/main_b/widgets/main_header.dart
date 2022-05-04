@@ -30,7 +30,7 @@ class MainHeader extends StatelessWidget {
                 ),
                 hintText: '모임을 찾아보세요 :)',
                 hintStyle: const TextStyle(
-                  color: ColorStore.color80,
+                  color: ColorStore.color89,
                   fontSize: 16,
                 ),
                 filled: true,

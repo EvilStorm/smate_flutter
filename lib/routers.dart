@@ -2,6 +2,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:smate/binders/binder_join_process.dart';
 import 'package:smate/screens/home/screen_home.dart';
 import 'package:smate/screens/join/screen_join_process.dart';
+import 'package:smate/screens/mate_post/screen_mate_posting.dart';
 import 'package:smate/screens/mating/screen_mating_home.dart';
 import 'package:smate/screens/sign/email_validation.dart';
 import 'package:smate/screens/sign/screen_sign_in.dart';
@@ -22,7 +23,8 @@ class Routers {
         name: '/joinProcess',
         page: () => const JoinProcessScreen(),
         binding: JoinProcessBinder()),
-    GetPage(name: '/home', page: () => const HomeScreen()),
+    GetPage(name: '/home', page: () => HomeScreenB()),
     GetPage(name: '/my/mating', page: () => MatingHomeScreen()),
+    GetPage(name: '/mating/create', page: () => MatePostingScreen()),
   ];
 }
