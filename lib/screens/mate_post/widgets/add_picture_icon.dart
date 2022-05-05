@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:smate/contants/color_store.dart';
 import 'package:smate/contants/constants.dart';
+import 'package:smate/controllers/constroller_posting.dart';
 
 class AddPicture extends StatelessWidget {
-  Function? click;
-  int maxCount;
-  int currentCount;
-  double size;
-  AddPicture(
-      {Key? key,
-      this.click,
-      this.maxCount = 0,
-      this.currentCount = 0,
-      this.size = 90})
-      : super(key: key);
+  final PostingController _controller = Get.find();
+
+  final Function? click;
+  final double size;
+  AddPicture({Key? key, this.click, this.size = 90}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,16 +37,21 @@ class AddPicture extends StatelessWidget {
             const SizedBox(
               height: Constants.sapceGap * 2,
             ),
-            Visibility(
-              visible: maxCount > 0,
-              child: Text(
-                '$currentCount/$maxCount',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .apply(color: ColorStore.color89),
-              ),
-            ),
+            Text.rich(TextSpan(
+                text: _controller.images.length.toString(),
+                style: Theme.of(context).textTheme.caption!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
+                children: [
+                  TextSpan(
+                      text: '/${_controller.maxImageCount}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .caption!
+                          .apply(color: ColorStore.color89))
+                ])),
           ],
         ),
       ),

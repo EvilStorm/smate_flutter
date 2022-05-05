@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:smate/contants/color_store.dart';
 import 'package:smate/contants/constants.dart';
 import 'package:smate/controllers/controller_main_b.dart';
-import 'package:smate/screens/main_b/widgets/main_header.dart';
+import 'package:smate/screens/main/widgets/main_header.dart';
 import 'package:smate/screens/mating/widgets/widget_mating_card.dart';
 
-class MainScreenB extends StatelessWidget {
-  MainScreenB({Key? key}) : super(key: key);
-  MainControllerB _mainControllerB = Get.find();
+class MainScreen extends StatelessWidget {
+  MainScreen({Key? key}) : super(key: key);
+  final MainControllerB _mainControllerB = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

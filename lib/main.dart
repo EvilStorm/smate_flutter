@@ -94,7 +94,6 @@ class MyApp extends StatelessWidget {
     Get.lazyPut(() => MateingController());
     Get.lazyPut(() => HomeControllerB());
     Get.lazyPut(() => MainControllerB());
-    Get.lazyPut(() => PostingController());
 
     return GetMaterialApp(
       builder: (BuildContext context, Widget? child) {

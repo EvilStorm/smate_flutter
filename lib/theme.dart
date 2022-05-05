@@ -12,9 +12,12 @@ class Themes {
       splashColor: Colors.transparent,
       highlightColor: const Color(0xFF2374ED),
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-        primary: const Color(0xFFF56E22),
-      )),
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFFF56E22),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      ),
       textTheme: const TextTheme(
         headline1: TextStyle(
             fontSize: 28.0, fontWeight: FontWeight.bold, color: Colors.black),
@@ -38,9 +41,9 @@ class Themes {
             fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.black),
         caption: TextStyle(fontSize: 14.0, color: Color(0xFFAFAFAF)),
         button: TextStyle(
-            fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.white),
+            fontSize: 18.0, fontWeight: FontWeight.w700, color: Colors.white),
         overline: TextStyle(fontSize: 14.0),
       ).apply(
-        bodyColor: Colors.black,
-      ));
+          // bodyColor: Colors.black,
+          ));
 }
