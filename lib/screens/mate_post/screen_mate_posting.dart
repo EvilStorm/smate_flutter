@@ -44,6 +44,9 @@ class MatePostingScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   PostingProgress(),
+                  const SizedBox(
+                    height: Constants.sapceGap * 6,
+                  ),
                   pageList[_controller.pageIndex.value],
                   const Spacer(),
                   ElevatedButton(

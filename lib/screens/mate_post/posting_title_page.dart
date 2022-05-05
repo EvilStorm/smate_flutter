@@ -14,9 +14,6 @@ class TitlePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: Constants.sapceGap * 6,
-        ),
         const SectionHeaderText(title: '스타일 이미지를 등록해주세요'),
         const SizedBox(
           height: Constants.sapceGap * 3,
