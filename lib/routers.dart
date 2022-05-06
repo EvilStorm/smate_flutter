@@ -9,11 +9,12 @@ import 'package:smate/screens/sign/email_validation.dart';
 import 'package:smate/screens/sign/screen_sign_in.dart';
 import 'package:smate/screens/splash/screen_splash.dart';
 
+import 'screens/common/calendar.dart';
 import 'screens/home/screen_home.dart';
 
 class Routers {
   final allPageRouter = [
-    GetPage(name: '/', page: () => const SplashScreen()),
+    GetPage(name: '/', page: () => const MateCalendar()),
     GetPage(
       name: '/signIn',
       page: () => const SignInScreen(),

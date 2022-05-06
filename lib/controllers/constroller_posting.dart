@@ -31,6 +31,9 @@ class PostingController extends GetxController with BasicControllorFunctions {
 
   Timer? _searchTmer;
 
+  var memberCount = 1.obs;
+  var maxMemberCount = 8;
+
   void clearSearch() {
     searchController.text = "";
     tagIsNotFound.value = false;
@@ -57,6 +60,27 @@ class PostingController extends GetxController with BasicControllorFunctions {
       });
     });
     super.onInit();
+  }
+
+  bool isMemberMax() {
+    if (memberCount.value >= maxMemberCount) {
+      return true;
+    }
+    return false;
+  }
+
+  void addMember() {
+    if (isMemberMax()) {
+      return;
+    }
+    memberCount.value = memberCount.value + 1;
+  }
+
+  void removeMember() {
+    if (memberCount.value == 1) {
+      return;
+    }
+    memberCount.value = memberCount.value - 1;
   }
 
   void getTagList() async {
