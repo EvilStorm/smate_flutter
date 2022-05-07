@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 import 'package:smate/contants/color_store.dart';
 import 'package:smate/contants/constants.dart';
@@ -46,69 +47,72 @@ class MatingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Flexible(
-              flex: 3,
-              fit: FlexFit.tight,
-              child: CachedNetworkImage(
-                imageUrl: mateModel.images![0],
-                fit: BoxFit.cover,
-              ),
-            ),
-            Flexible(
-              flex: 7,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: Constants.sapceGap * 2,
-                    horizontal: Constants.sapceGap * 4),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    header(),
-                    const SizedBox(
-                      height: Constants.sapceGap * 3,
-                    ),
-                    Text(
-                      mateModel.title ?? "none",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    const SizedBox(
-                      height: Constants.sapceGap * 2,
-                    ),
-                    Text(
-                      "${mateModel.locationStr} · ${AboutDate.dateForMate.format(
-                        (mateModel.mateDate ?? DateTime.now()),
-                      )}",
-                      maxLines: 1,
-                      style: Theme.of(context)
-                          .textTheme
-                          .caption!
-                          .apply(color: ColorStore.color65),
-                    ),
-                    const SizedBox(
-                      height: Constants.sapceGap * 3,
-                    ),
-                    CardJoinMember(
-                        limitCount: mateModel.memberLimit!,
-                        userList: mateModel.member?.joinMember),
-                  ],
+    return GestureDetector(
+      onTap: () => Get.toNamed('/mating/detail', arguments: mateModel),
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: height,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Flexible(
+                flex: 3,
+                fit: FlexFit.tight,
+                child: CachedNetworkImage(
+                  imageUrl: mateModel.images![0],
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-          ],
+              Flexible(
+                flex: 7,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: Constants.sapceGap * 2,
+                      horizontal: Constants.sapceGap * 4),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      header(),
+                      const SizedBox(
+                        height: Constants.sapceGap * 3,
+                      ),
+                      Text(
+                        mateModel.title ?? "none",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      const SizedBox(
+                        height: Constants.sapceGap * 2,
+                      ),
+                      Text(
+                        "${mateModel.locationStr} · ${AboutDate.dateForMate.format(
+                          (mateModel.mateDate ?? DateTime.now()),
+                        )}",
+                        maxLines: 1,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption!
+                            .apply(color: ColorStore.color65),
+                      ),
+                      const SizedBox(
+                        height: Constants.sapceGap * 3,
+                      ),
+                      CardJoinMember(
+                          limitCount: mateModel.memberLimit!,
+                          userList: mateModel.member?.joinMember),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
