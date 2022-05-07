@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
+import 'package:smate/screens/common/circular_progress.dart';
 import 'package:smate/screens/common/dialog_basic.dart';
 
 class BasicControllorFunctions {
@@ -19,6 +21,23 @@ class BasicControllorFunctions {
       ),
       barrierDismissible: false,
     );
+  }
+
+  Future<void> showLoadingDialog() async {
+    showDialog(
+      context: Get.overlayContext!,
+      barrierDismissible: false,
+      builder: (_) => WillPopScope(
+        onWillPop: () async => false,
+        child: const Center(
+          child: CircularProgress(),
+        ),
+      ),
+    );
+  }
+
+  void hideLoadingDialog() {
+    Navigator.of(Get.overlayContext!).pop();
   }
 
   void showRetryMessage() {

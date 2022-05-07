@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smate/contants/constants.dart';
-import 'package:smate/controllers/controller_main_b.dart';
+import 'package:smate/controllers/controller_main.dart';
 import 'package:smate/screens/main/widgets/main_header.dart';
 import 'package:smate/screens/mating/widgets/widget_mating_card.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
-  final MainControllerB _mainControllerB = Get.find();
+  final MainController _mainController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +47,13 @@ class MainScreen extends StatelessWidget {
             Expanded(
               child: Obx(
                 () => ListView.separated(
-                  itemCount: _mainControllerB.mateList.length,
+                  itemCount: _mainController.mateList.length,
                   itemBuilder: (context, index) {
                     return MatingCard(
                       key: UniqueKey(),
                       type: MatingCardType.none,
                       height: 160,
-                      mateModel: _mainControllerB.mateList.elementAt(index),
+                      mateModel: _mainController.mateList.elementAt(index),
                     );
                   },
                   separatorBuilder: (context, index) => const SizedBox(

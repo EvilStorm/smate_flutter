@@ -18,6 +18,10 @@ class Themes {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
+      sliderTheme: SliderThemeData(
+        showValueIndicator: ShowValueIndicator.always,
+        valueIndicatorColor: const Color(0xFFF56E22),
+      ),
       textTheme: const TextTheme(
         headline1: TextStyle(
             fontSize: 28.0, fontWeight: FontWeight.bold, color: Colors.black),

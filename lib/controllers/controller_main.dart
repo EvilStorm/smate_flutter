@@ -5,7 +5,7 @@ import 'package:smate/controllers/basic_controller_fn.dart';
 import 'package:smate/models/model_mate_k.dart';
 import 'package:smate/network/http_client.dart';
 
-class MainControllerB extends GetxController with BasicControllorFunctions {
+class MainController extends GetxController with BasicControllorFunctions {
   RxList<MateModel> mateList = <MateModel>[].obs;
 
   int pageCount = 0;
@@ -25,5 +25,9 @@ class MainControllerB extends GetxController with BasicControllorFunctions {
           .toList();
       logInfo(' mateList size : ${mateList.length}');
     }
+  }
+
+  void addMainMate(MateModel newMate) {
+    mateList.insert(0, newMate);
   }
 }

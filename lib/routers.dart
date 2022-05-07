@@ -14,7 +14,7 @@ import 'screens/home/screen_home.dart';
 
 class Routers {
   final allPageRouter = [
-    GetPage(name: '/', page: () => const MateCalendar()),
+    GetPage(name: '/', page: () => const SplashScreen()),
     GetPage(
       name: '/signIn',
       page: () => const SignInScreen(),

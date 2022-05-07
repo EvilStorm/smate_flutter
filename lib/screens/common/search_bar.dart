@@ -24,7 +24,7 @@ class SearchBar extends StatelessWidget {
         prefixIcon: GestureDetector(
           onTap: () => doSearch?.call(),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: SvgPicture.asset(
               'assets/images/icon_search.svg',
               color: Colors.black,

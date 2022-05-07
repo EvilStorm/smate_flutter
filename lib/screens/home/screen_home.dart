@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:smate/controllers/controller_home_b.dart';
+import 'package:smate/controllers/controller_home.dart';
 import 'package:smate/screens/main/screen_main.dart';
 import 'package:smate/screens/mating/screen_mating_home.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final HomeControllerB _controllerB = Get.find();
+  final HomeController _controller = Get.find();
 
   final List<Widget> _widgetOptions = [
     MainScreen(),
@@ -24,14 +24,14 @@ class HomeScreen extends StatelessWidget {
       () => Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
-          child: _widgetOptions[_controllerB.tabIndex.value],
+          child: _widgetOptions[_controller.tabIndex.value],
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/icon_home.svg',
-                color: _controllerB.tabIndex.value == 0
+                color: _controller.tabIndex.value == 0
                     ? Theme.of(context).primaryColor
                     : Colors.black,
               ),
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/icon_fashion.svg',
-                color: _controllerB.tabIndex.value == 1
+                color: _controller.tabIndex.value == 1
                     ? Theme.of(context).primaryColor
                     : Colors.black,
               ),
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/icon_offline.svg',
-                color: _controllerB.tabIndex.value == 2
+                color: _controller.tabIndex.value == 2
                     ? Theme.of(context).primaryColor
                     : Colors.black,
               ),
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/icon_my.svg',
-                color: _controllerB.tabIndex.value == 3
+                color: _controller.tabIndex.value == 3
                     ? Theme.of(context).primaryColor
                     : Colors.black,
               ),
@@ -67,8 +67,8 @@ class HomeScreen extends StatelessWidget {
           ],
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          onTap: (index) => _controllerB.tabIndex.value = index,
-          currentIndex: _controllerB.tabIndex.value,
+          onTap: (index) => _controller.tabIndex.value = index,
+          currentIndex: _controller.tabIndex.value,
           selectedItemColor: Theme.of(context).primaryColor,
           unselectedItemColor: Colors.black,
         ),

@@ -21,6 +21,7 @@ class TextInputBox extends StatelessWidget {
     return TextField(
       controller: controller,
       maxLines: maxLine,
+      autocorrect: false,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(16),
         hintText: hint,

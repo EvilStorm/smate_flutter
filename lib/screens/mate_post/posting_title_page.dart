@@ -13,6 +13,7 @@ class TitlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SectionHeaderText(title: '스타일 이미지를 등록해주세요'),
         const SizedBox(

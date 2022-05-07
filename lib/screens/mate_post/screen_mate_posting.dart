@@ -4,6 +4,7 @@ import 'package:smate/contants/color_store.dart';
 
 import 'package:smate/contants/constants.dart';
 import 'package:smate/controllers/constroller_posting.dart';
+import 'package:smate/screens/common/button.dart';
 import 'package:smate/screens/mate_post/posting_date_page.dart';
 import 'package:smate/screens/mate_post/posting_tag_page.dart';
 import 'package:smate/screens/mate_post/posting_title_page.dart';
@@ -49,18 +50,27 @@ class MatePostingScreen extends StatelessWidget {
                   ),
                   pageList[_controller.pageIndex.value],
                   const Spacer(),
-                  ElevatedButton(
-                    onPressed: () {
-                      _controller.next();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        _controller.isLastPage() ? '모임 만들기' : '다음',
-                        style: Theme.of(context).textTheme.button,
-                      ),
-                    ),
-                  ),
+                  MateButton(
+                      onClick: () {
+                        if (_controller.isLastPage()) {
+                          _controller.postStyleMate();
+                        } else {
+                          _controller.next();
+                        }
+                      },
+                      text: _controller.isLastPage() ? '모임 만들기' : '다음'),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     _controller.next();
+                  //   },
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(16.0),
+                  //     child: Text(
+                  //       _controller.isLastPage() ? '모임 만들기' : '다음',
+                  //       style: Theme.of(context).textTheme.button,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

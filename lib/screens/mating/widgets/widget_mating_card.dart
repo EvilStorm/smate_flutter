@@ -46,7 +46,6 @@ class MatingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logInfo("mateModel.images![0]: ${mateModel.images![0]}");
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
