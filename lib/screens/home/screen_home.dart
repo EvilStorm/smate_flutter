@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:smate/controllers/controller_home.dart';
 import 'package:smate/screens/main/screen_main.dart';
 import 'package:smate/screens/mating/screen_mating_home.dart';
+import 'package:smate/screens/mypage/screen_my_page.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -13,9 +14,8 @@ class HomeScreen extends StatelessWidget {
 
   final List<Widget> _widgetOptions = [
     MainScreen(),
-    Placeholder(),
     MatingHomeScreen(),
-    Placeholder(),
+    MyPageScreen(),
   ];
 
   @override
@@ -39,17 +39,8 @@ class HomeScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                'assets/images/icon_fashion.svg',
-                color: _controller.tabIndex.value == 1
-                    ? Theme.of(context).primaryColor
-                    : Colors.black,
-              ),
-              label: "패션의참견",
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
                 'assets/images/icon_offline.svg',
-                color: _controller.tabIndex.value == 2
+                color: _controller.tabIndex.value == 1
                     ? Theme.of(context).primaryColor
                     : Colors.black,
               ),
@@ -58,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/icon_my.svg',
-                color: _controller.tabIndex.value == 3
+                color: _controller.tabIndex.value == 2
                     ? Theme.of(context).primaryColor
                     : Colors.black,
               ),
