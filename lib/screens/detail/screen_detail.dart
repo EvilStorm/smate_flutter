@@ -1,21 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:loggy/loggy.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:smate/contants/color_store.dart';
 import 'package:smate/contants/constants.dart';
-import 'package:smate/models/model_mate_k.dart';
-import 'package:smate/screens/common/about_date.dart';
+import 'package:smate/contants/key_store.dart';
+import 'package:smate/controllers/controller_mating_detail.dart';
 import 'package:smate/screens/common/button.dart';
-import 'package:smate/screens/common/calendar.dart';
 import 'package:smate/screens/common/section_header_20.dart';
-import 'package:smate/screens/mate_post/widgets/section_header.dart';
-import 'package:smate/screens/mate_post/widgets/tag_hot.dart';
-import 'package:smate/screens/mate_post/widgets/widget_tag.dart';
-import 'package:smate/screens/mating/widgets/member_avatar.dart';
+import 'package:smate/screens/common/user_brief_info.dart';
+import 'package:smate/screens/detail/widgets/detail_added_tags.dart';
+import 'package:smate/screens/detail/widgets/detail_apply_member.dart';
+import 'package:smate/screens/detail/widgets/detail_join_member.dart';
+import 'package:smate/screens/detail/widgets/detail_mating_time.dart';
 
 class MateDetailScreen extends StatefulWidget {
   const MateDetailScreen({Key? key}) : super(key: key);
@@ -25,7 +24,9 @@ class MateDetailScreen extends StatefulWidget {
 }
 
 class _MateDetailScreenState extends State<MateDetailScreen> {
-  late MateModel _passingModel;
+  final MatingDetailController _detailController = Get.find();
+
+  // late MateModel _passingModel;
   late double defaultDetailHeight;
   double detailHeight = 0;
   double dragStartPos = 0;
@@ -33,10 +34,16 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
   late double totalHeight;
 
   CarouselController buttonCarouselController = CarouselController();
+  final _storage = GetStorage();
+  late String myId;
 
   @override
   void initState() {
-    _passingModel = Get.arguments;
+    // _passingModel = Get.arguments;
+    // logError("_passingModel : ${Get.arguments.sId}");
+    _detailController.setMate(Get.arguments);
+    _detailController.getMateDetail(Get.arguments.sId!);
+    myId = _storage.read(KeyStore.userID_I);
 
     super.initState();
   }
@@ -55,32 +62,15 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
   void dragUp(DragUpdateDetails details) {
     newHeight = detailHeight + (dragStartPos - details.localPosition.dy) / 15;
     if (newHeight < defaultDetailHeight) {
-      logInfo(
-          'newHeight < defaultDetailHeight: newHeight:$newHeight  / Default: $defaultDetailHeight');
       newHeight = detailHeight;
     }
     if (newHeight >= totalHeight) {
-      logInfo('newHeight >= totalHeight: $detailHeight');
       newHeight = totalHeight;
     }
 
     setState(() {
-      logInfo('detailHeight: $detailHeight');
       detailHeight = newHeight;
     });
-  }
-
-  Text basicInfo(String title, String info) {
-    return Text.rich(
-      TextSpan(
-        text: title,
-        style: Theme.of(context).textTheme.headline5,
-        children: [
-          TextSpan(text: "      "),
-          TextSpan(text: info, style: Theme.of(context).textTheme.bodyText1),
-        ],
-      ),
-    );
   }
 
   @override
@@ -105,7 +95,8 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
           children: [
             CarouselSlider(
               carouselController: buttonCarouselController,
-              items: _passingModel.images?.map((String imageUrl) {
+              items: _detailController.mateModel.value.images
+                  ?.map((String imageUrl) {
                 return Builder(builder: (context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
@@ -153,7 +144,8 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
                                     letterSpacing: 1.5),
                             children: [
                               TextSpan(
-                                  text: '/${_passingModel.images?.length}',
+                                  text:
+                                      '/${_detailController.mateModel.value.images?.length}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .caption!
@@ -207,37 +199,24 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
                                     const SizedBox(
                                       height: Constants.sapceGap * 2,
                                     ),
-                                    Row(
-                                      children: [
-                                        MemberAvatar(
-                                          userInfo: _passingModel.owner!,
-                                          size: 42,
-                                        ),
-                                        const SizedBox(
-                                          width: Constants.sapceGap * 3,
-                                        ),
-                                        Text.rich(
-                                          TextSpan(
-                                              text: _passingModel
-                                                      .owner?.nickName ??
-                                                  "unkown",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline6),
-                                        ),
-                                      ],
-                                    ),
+                                    BriefUserInfo(
+                                        info: _detailController
+                                            .mateModel.value.owner!),
                                     const SizedBox(
                                       height: Constants.sapceGap * 6,
                                     ),
                                     SectionHeader20Text(
-                                      title: _passingModel.title ?? "",
+                                      title: _detailController
+                                              .mateModel.value.title ??
+                                          "",
                                     ),
                                     const SizedBox(
                                       height: Constants.sapceGap * 4,
                                     ),
                                     Text(
-                                      _passingModel.message ?? "",
+                                      _detailController
+                                              .mateModel.value.message ??
+                                          "",
                                       style:
                                           Theme.of(context).textTheme.bodyText2,
                                     ),
@@ -249,21 +228,16 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
                                         color: ColorStore.color89,
                                       ),
                                     ),
-                                    basicInfo('참가인원',
-                                        '최대 ${_passingModel.memberLimit}명'),
-                                    const SizedBox(
-                                      height: Constants.sapceGap * 4,
-                                    ),
-                                    basicInfo('모임장소',
-                                        _passingModel.locationStr ?? ""),
-                                    const SizedBox(
-                                      height: Constants.sapceGap * 4,
-                                    ),
-                                    basicInfo(
-                                        '모임날짜',
-                                        AboutDate.dateForMate_Detail.format(
-                                            _passingModel.mateDate ??
-                                                DateTime.now())),
+                                    MatingTimeSection(
+                                        maxMember: _detailController
+                                                .mateModel.value.memberLimit ??
+                                            1,
+                                        location: _detailController
+                                                .mateModel.value.locationStr ??
+                                            "",
+                                        date: _detailController
+                                                .mateModel.value.mateDate ??
+                                            DateTime.now()),
                                     const Padding(
                                       padding: EdgeInsets.symmetric(
                                           vertical: Constants.sapceGap * 8),
@@ -272,102 +246,19 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
                                         color: ColorStore.color89,
                                       ),
                                     ),
-                                    Text(
-                                      '참여중인 메이트',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                    ...?_passingModel.member?.member?.map(
-                                      (e) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: Constants.sapceGap * 3),
-                                        child: Row(
-                                          children: [
-                                            MemberAvatar(
-                                              userInfo: e,
-                                              size: 42,
-                                            ),
-                                            const SizedBox(
-                                              width: Constants.sapceGap * 3,
-                                            ),
-                                            Text.rich(
-                                              TextSpan(
-                                                  text: e.nickName ?? "unkown",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline6),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                    JoinMembers(
+                                      isMine: isMine(),
                                     ),
                                     const SizedBox(
                                       height: Constants.sapceGap * 4,
                                     ),
-                                    // Text(
-                                    //   '참여대기 메이트',
-                                    //   style: Theme.of(context)
-                                    //       .textTheme
-                                    //       .bodyText1!
-                                    //       .copyWith(fontWeight: FontWeight.bold),
-                                    // ),
-                                    // ...?_passingModel.member?.joinMember?.map(
-                                    //   (e) => Padding(
-                                    //     padding: const EdgeInsets.symmetric(
-                                    //         vertical: Constants.sapceGap * 3),
-                                    //     child: Row(
-                                    //       children: [
-                                    //         MemberAvatar(
-                                    //           userInfo: e,
-                                    //           size: 42,
-                                    //         ),
-                                    //         const SizedBox(
-                                    //           width: Constants.sapceGap * 3,
-                                    //         ),
-                                    //         Text.rich(
-                                    //           TextSpan(
-                                    //               text: e.nickName ?? "unkown",
-                                    //               style: Theme.of(context)
-                                    //                   .textTheme
-                                    //                   .headline6),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // const SizedBox(
-                                    //   height: Constants.sapceGap * 6,
-                                    // ),
-                                    Text(
-                                      '태그',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
+                                    ApplyMembers(
+                                      isMine: isMine(),
                                     ),
                                     const SizedBox(
-                                      height: Constants.sapceGap * 2,
+                                      height: Constants.sapceGap * 6,
                                     ),
-                                    Wrap(
-                                      children: [
-                                        ...?_passingModel.tags?.map(
-                                          (e) => Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: Constants.sapceGap * 3),
-                                            child: TagWidget(
-                                              borderColor: ColorStore.colorD6,
-                                              backgroundColor:
-                                                  ColorStore.colorF6,
-                                              tag: '#${e.tag}',
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                    MateAddedTags(),
                                     const SizedBox(
                                       height: Constants.sapceGap * 6,
                                     ),
@@ -376,7 +267,7 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
                               ),
                             ),
                           ),
-                          MateButton(text: '참여하기'),
+                          Obx(() => getBottomBtns()),
                           const SizedBox(
                             height: Constants.sapceGap * 4,
                           )
@@ -391,5 +282,43 @@ class _MateDetailScreenState extends State<MateDetailScreen> {
         ),
       ),
     );
+  }
+
+  Widget getBottomBtns() {
+    if (isMine()) {
+      return const SizedBox(
+        width: 0,
+        height: 0,
+      );
+    }
+    if (applyedMate()) {
+      return MateButton(
+        onClick: () => _detailController.joinCancelMate(),
+        text: '참가 취소',
+      );
+    }
+
+    return MateButton(
+      onClick: () => _detailController.joinMate(),
+      text: '참여하기',
+    );
+  }
+
+  bool applyedMate() {
+    if ((_detailController.mateModel.value.member?.member
+                ?.indexWhere((element) => element.sId == myId) ??
+            -1) >
+        -1) {
+      return true;
+    }
+    return false;
+  }
+
+  bool isMine() {
+    if (myId == _detailController.mateModel.value.owner?.sId) {
+      return true;
+    }
+
+    return false;
   }
 }

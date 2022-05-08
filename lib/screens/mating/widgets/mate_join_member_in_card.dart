@@ -31,7 +31,7 @@ class CardJoinMember extends StatelessWidget {
         .take(4)
         .map((e) => Padding(
               padding: const EdgeInsets.only(right: Constants.sapceGap),
-              child: MemberAvatar(userInfo: e),
+              child: MemberAvatar(imageUrl: e.pictureMe),
             ))
         .toList();
   }

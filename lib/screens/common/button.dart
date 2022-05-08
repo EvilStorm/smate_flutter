@@ -23,7 +23,7 @@ class MateButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => onClick?.call(),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: width ?? MediaQuery.of(context).size.width,
         height: height ?? 56,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),

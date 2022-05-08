@@ -91,9 +91,6 @@ class MyApp extends StatelessWidget {
     Get.put(UserInfoController());
     Get.put(ThirdPartySignInController());
     Get.put(EmailSignInController());
-    Get.lazyPut(() => MateingController());
-    Get.lazyPut(() => HomeController());
-    Get.lazyPut(() => MainController());
 
     return GetMaterialApp(
       builder: (BuildContext context, Widget? child) {
